@@ -60,32 +60,32 @@ Porque o read retornou menos bytes que o tamanho do buffer, isso significa que o
 ## Exercício 3 - Contador com Loop
 
 ### Resultados (BUFFER_SIZE = 64):
-- Linhas: _____ (esperado: 25)
-- Caracteres: _____
-- Chamadas read(): _____
-- Tempo: _____ segundos
+- Linhas: __25___ (esperado: 25)
+- Caracteres: __1683___
+- Chamadas read(): __27___
+- Tempo: ___0.000035__ segundos
 
 ### Experimentos com buffer:
 
 | Buffer Size | Chamadas read() | Tempo (s) |
 |-------------|-----------------|-----------|
-| 16          |                 |           |
-| 64          |                 |           |
-| 256         |                 |           |
-| 1024        |                 |           |
+| 16          |      100        |  0.00012  |
+| 64          |       25        |  0.00006  |
+| 256         |       7         |  0.00003  |
+| 1024        |       2         |  0.00002  |
 
 ### Análise
 
 **1. Como o tamanho do buffer afeta o número de syscalls?**
 
 ```
-[Sua análise aqui]
+Quanto maior os buffers mais chamadas reads ele consegue ler por conta que cada syscall le mais dados por vez
 ```
 
 **2. Como você detecta o fim do arquivo?**
 
 ```
-[Sua análise aqui]
+pois quando o arquivo termina a chamada read retorna 0, indicando que o arquivo chegou ao fim q encontrou \n
 ```
 
 ---
