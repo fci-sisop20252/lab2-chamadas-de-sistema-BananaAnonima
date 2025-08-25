@@ -33,8 +33,8 @@ Printf(), pois por ele agrupar dados gerando menos chamadas, ele consegue melhor
 ## Exercício 2 - Leitura de Arquivo
 
 ### Resultados da execução:
-- File descriptor: _____
-- Bytes lidos: _____
+- File descriptor: ___3__
+- Bytes lidos: __127___
 
 ### Comando strace:
 ```bash
@@ -46,13 +46,13 @@ strace -e open,read,close ./ex2_leitura
 **1. Por que o file descriptor não foi 0, 1 ou 2?**
 
 ```
-[Sua análise aqui]
+Porque quando quando o SO procura o menor file descriptor disponível ele considera a partir do 3, pois o 0 1 e 2 são reservados. 0 = entrada; 1 = saida; 2 = saida de erro 
 ```
 
 **2. Como você sabe que o arquivo foi lido completamente?**
 
 ```
-[Sua análise aqui]
+Porque o read retornou menos bytes que o tamanho do buffer, isso significa que o arquivo terminou
 ```
 
 ---
