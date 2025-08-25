@@ -60,19 +60,19 @@ Porque o read retornou menos bytes que o tamanho do buffer, isso significa que o
 ## Exercício 3 - Contador com Loop
 
 ### Resultados (BUFFER_SIZE = 64):
-- Linhas: __25___ (esperado: 25)
-- Caracteres: __1683___
-- Chamadas read(): __27___
-- Tempo: ___0.000035__ segundos
+- Linhas: __24___ (esperado: 25)
+- Caracteres: __1299___
+- Chamadas read(): __21___
+- Tempo: ___0.000086__ segundos
 
 ### Experimentos com buffer:
 
 | Buffer Size | Chamadas read() | Tempo (s) |
 |-------------|-----------------|-----------|
-| 16          |      100        |  0.00012  |
-| 64          |       25        |  0.00006  |
-| 256         |       7         |  0.00003  |
-| 1024        |       2         |  0.00002  |
+| 16          |      82         |  0.000204 |
+| 64          |       21        |  0.000086 |
+| 256         |       6         |  0.000072 |
+| 1024        |       2         |  0.000066 |
 
 ### Análise
 
@@ -93,10 +93,10 @@ pois quando o arquivo termina a chamada read retorna 0, indicando que o arquivo 
 ## Exercício 4 - Cópia de Arquivo
 
 ### Resultados:
-- Bytes copiados: _____
-- Operações: _____
-- Tempo: _____ segundos
-- Throughput: _____ KB/s
+- Bytes copiados: __1364___
+- Operações: __6___
+- Tempo: __0.000203___ segundos
+- Throughput: ___6561.73__ KB/s
 
 ### Verificação:
 ```bash
@@ -109,13 +109,13 @@ Resultado: [ ] Idênticos [ ] Diferentes
 **1. Por que devemos verificar que bytes_escritos == bytes_lidos?**
 
 ```
-[Sua análise aqui]
+Para garantir que todos os dados lidos do arquivo origem foram escritos no arquivo destino
 ```
 
 **2. Que flags são essenciais no open() do destino?**
 
 ```
-[Sua análise aqui]
+As flags O_WRONLY, O_CREAT, O_TRUNC são essenciais para abrir o arquivo apenas para escrita
 ```
 
 ---
@@ -127,19 +127,20 @@ Resultado: [ ] Idênticos [ ] Diferentes
 **1. Como as syscalls demonstram a transição usuário → kernel?**
 
 ```
-[Sua análise aqui]
+Syscalls fazem a transição do modo usuário para o modo kernel, com isso, o programa solicita ao SO o acesso seguro aos recursos de hardware.
+
 ```
 
 **2. Qual é o seu entendimento sobre a importância dos file descriptors?**
 
 ```
-[Sua análise aqui]
+Eles são identificadores únicos usados pelo SO para controlar o acesso a arquivos
 ```
 
 **3. Discorra sobre a relação entre o tamanho do buffer e performance:**
 
 ```
-[Sua análise aqui]
+Buffers maiores reduzem a quantidade de chamadas de sistema, fazendo ter maior desempenho
 ```
 
 ### Comparação de Performance
@@ -155,7 +156,7 @@ time cp dados/origem.txt dados/destino_cp.txt
 **Por que você acha que foi mais rápido?**
 
 ```
-[Sua análise aqui]
+cp, porque ele é otimizado internamente utilizando buffers maiores
 ```
 
 ---
