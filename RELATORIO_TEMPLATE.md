@@ -19,13 +19,13 @@ strace -e write ./ex1b_write
 **2. Por que há diferença entre printf() e write()?**
 
 ```
-[Sua análise aqui]
+Printf usa e gera menos chamadas ao sistema, agrupando dados para melhorar o desempenho, enquanto o write envia os dados direto para o kernel a cada chamada.
 ```
 
 **3. Qual implementação você acha que é mais eficiente? Por quê?**
 
 ```
-[Sua análise aqui]
+Printf(), pois por ele agrupar dados gerando menos chamadas, ele consegue melhorar o desemprenho.
 ```
 
 ---
