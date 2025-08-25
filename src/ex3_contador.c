@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#define BUFFER_SIZE 64   // Buffer pequeno para forçar múltiplas leituras
+#define BUFFER_SIZE 1024   // Buffer pequeno para forçar múltiplas leituras
 
 int main() {
     char buffer[BUFFER_SIZE];
@@ -47,7 +47,7 @@ int main() {
          * TODO 2: Contar caracteres '\n' no buffer
          */
         for (int i = 0; i < bytes_lidos; i++) {
-            if (buffer[i] == "\n") {
+            if (buffer[i] == '\n') {
                 total_linhas++;
             }
             /* TODO: verificar '\n' e incrementar total_linhas */
@@ -67,7 +67,7 @@ int main() {
     /*
      * TODO 4: Verificar se houve erro na leitura
      */
-    if (/* TODO: condição de erro */) {
+    if (bytes_lidos < 0) {
         perror("Erro na leitura");
         close(fd);
         return 1;
@@ -90,7 +90,8 @@ int main() {
     }
     
     printf("\nExecute: strace -c ./ex3_contador\n");
-    
+
+
     return 0;
 }
 
